@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:stretchColumns="1">
+
+    <TableRow>
+        <TextView
+                android:id="@+id/text_fuelitem_filldate"
+                android:layout_column="1"
+                android:padding="3dip"/>
+        <TextView
+                android:id="@+id/text_fuelitem_odometer"
+                android:gravity="left"
+                android:padding="3dip"/>
+        <TextView
+                android:id="@+id/text_fuelitem_distance"
+                android:gravity="left"
+                android:padding="3dip"/>
+        <TextView
+                android:id="@+id/text_fuelitem_quantity"
+                android:gravity="left"
+                android:padding="3dip"/>
+        <TextView
+                android:id="@+id/text_fuelitem_cost"
+                android:gravity="left"
+                android:padding="3dip"/>
+        <TextView
+                android:id="@+id/text_fuelitem_consumption"
+                android:gravity="left"
+                android:padding="3dip"/>
+        <TextView
+                android:id="@+id/text_fuelitem_unitprice"
+                android:gravity="left"
+                android:padding="3dip"/>
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+    <TextView android:id="@+id/label_vehicle_name"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Name"
+            />
+
+    <EditText android:id="@+id/input_vehicle_name"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/label_vehicle_name"
+            />
+
+
+    <Button android:id="@+id/button_save_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speichern"
+            android:layout_below="@id/input_vehicle_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="10dip"
+            />
+
+    <Button android:id="@+id/button_cancel_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Abbrechen"
+            android:layout_toRightOf="@id/button_save_vehicle"
+            android:layout_alignTop="@id/button_save_vehicle"
+            />
+
+</RelativeLayout>
