@@ -2,7 +2,7 @@ package de.dengot.spritmonitor.model;
 
 import java.util.Date;
 
-public interface Fueling extends Comparable<Fueling>{
+public interface Fueling extends  Identifyable, Comparable<Fueling>{
 
     float getCost();
 

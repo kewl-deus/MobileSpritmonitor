@@ -8,13 +8,14 @@ import android.widget.ListView;
 import de.dengot.spritmonitor.R;
 import de.dengot.spritmonitor.model.Vehicle;
 import de.dengot.spritmonitor.model.VehicleBean;
-import de.dengot.spritmonitor.widget.VehicleListAdapter;
+import de.dengot.spritmonitor.widget.VehicleCursorAdapter;
+import de.dengot.spritmonitor.persistence.VehicleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleListActivity extends ListActivity {
-    private VehicleListAdapter vehiclesAdapter;
+
 
     /**
      * Called when the activity is first created.
@@ -23,14 +24,19 @@ public class VehicleListActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.vehiclelist);
+
         List<Vehicle> vehicleList = new ArrayList<Vehicle>();
         vehicleList.add(new VehicleBean("R32"));
         vehicleList.add(new VehicleBean("GTI"));
         vehicleList.add(new VehicleBean("Street Triple"));
 
-        vehiclesAdapter = new VehicleListAdapter(this, R.layout.vehiclelist_item, vehicleList);
-        setListAdapter(vehiclesAdapter);
+        //VehicleListAdapter vehiclesAdapter = new VehicleListAdapter(this, R.layout.vehiclelist_item, vehicleList);
+        //setListAdapter(vehiclesAdapter);
 
+        VehicleRepository repo = new VehicleRepository(this);
+        VehicleCursorAdapter cursorAdapter = new VehicleCursorAdapter(this, R.layout.vehiclelist_item, repo.findAll());
+        setListAdapter(cursorAdapter);
     }
 
     @Override
@@ -74,7 +80,8 @@ public class VehicleListActivity extends ListActivity {
         switch(item.getItemId()){
             case R.id.edit_vehicle:
                 Intent editVehicleIntent = new Intent(this, EditVehicleActivity.class);
-                editVehicleIntent.putExtra("vechile", (VehicleBean) getListView().getSelectedItem());
+                Vehicle vehicle = (Vehicle) getListView().getSelectedItem();
+                editVehicleIntent.putExtra(EditVehicleActivity.VEHICLE_ID, vehicle.getId());
                 break;
         }
         return super.onContextItemSelected(item);

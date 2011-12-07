@@ -9,7 +9,7 @@ import static de.dengot.spritmonitor.persistence.metadata.DbTable.table;
 
 public final class VehicleTable {
 
-    public static final String ID = "id";
+    public static final String ID = "_id";
     public static final String NAME = "name";
 
 
@@ -19,4 +19,8 @@ public final class VehicleTable {
     );
 
     private VehicleTable(){}
+
+    public static String name(){
+        return TABLE.getName();
+    }
 }

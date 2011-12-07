@@ -2,7 +2,7 @@ package de.dengot.spritmonitor.model;
 
 import java.util.List;
 
-public interface Vehicle {
+public interface Vehicle extends Identifyable {
 
     void addFueling(Fueling fueling);
 

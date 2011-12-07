@@ -5,15 +5,19 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class VehicleBean implements Serializable, Vehicle {
+public class VehicleBean extends IdentifyableBean implements Serializable, Vehicle {
 
     private String name;
 
-    private LinkedList<Fueling> fuelings;
+    private List<Fueling> fuelings;
+
+    public VehicleBean() {
+        this.fuelings = new LinkedList<Fueling>();
+    }
 
     public VehicleBean(String name) {
+        this();
         this.name = name;
-        this.fuelings = new LinkedList<Fueling>();
     }
 
     public void addFueling(Fueling fueling) {
@@ -22,6 +26,10 @@ public class VehicleBean implements Serializable, Vehicle {
 
     public List<Fueling> getFuelings() {
         return fuelings;
+    }
+
+    public void setFuelings(List<Fueling> fuelings){
+        this.fuelings = fuelings;
     }
 
     public String getName() {
@@ -35,7 +43,7 @@ public class VehicleBean implements Serializable, Vehicle {
     public int getOdometer() {
         if (fuelings.isEmpty()) return 0;
         Collections.sort(fuelings);
-        return fuelings.getFirst().getOdometer();
+        return fuelings.iterator().next().getOdometer();
     }
 
     public int getTotalDistance() {
@@ -74,7 +82,7 @@ public class VehicleBean implements Serializable, Vehicle {
         return sum / fuelings.size();
     }
 
-    public float getAverageUnitPrice(){
+    public float getAverageUnitPrice() {
         if (fuelings.isEmpty()) return 0;
         float sum = 0;
         for (Fueling fueling : fuelings) {

@@ -28,11 +28,11 @@ public final class R {
         public static final int text_vehicle_summary=0x7f05000c;
     }
     public static final class layout {
-        public static final int custom_row=0x7f020000;
-        public static final int fuelingform=0x7f020001;
-        public static final int fuelinglist=0x7f020002;
-        public static final int fuelinglist_item=0x7f020003;
-        public static final int vehicleform=0x7f020004;
+        public static final int fuelingform=0x7f020000;
+        public static final int fuelinglist=0x7f020001;
+        public static final int fuelinglist_item=0x7f020002;
+        public static final int vehicleform=0x7f020003;
+        public static final int vehiclelist=0x7f020004;
         public static final int vehiclelist_item=0x7f020005;
     }
     public static final class menu {

@@ -3,7 +3,7 @@ package de.dengot.spritmonitor.model;
 import java.util.Date;
 import java.io.Serializable;
 
-public class FuelingBean implements Serializable, Fueling {
+public class FuelingBean  extends IdentifyableBean implements Serializable, Fueling {
     
     private Date filldate;
     private int odometer;

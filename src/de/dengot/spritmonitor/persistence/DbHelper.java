@@ -3,6 +3,7 @@ package de.dengot.spritmonitor.persistence;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import de.dengot.spritmonitor.persistence.table.FuelingTable;
 import de.dengot.spritmonitor.persistence.table.VehicleTable;
 
@@ -20,8 +21,17 @@ class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(VehicleTable.TABLE.toDDL());
-        db.execSQL(FuelingTable.TABLE.toDDL());
+
+        //debug
+        onUpgrade(db, 0, DB_VERSION);
+
+        final String vehicleDDL = VehicleTable.TABLE.toDDL();
+        Log.v("Creating vehicle table", vehicleDDL);
+        db.execSQL(vehicleDDL);
+
+        final String fuelingDDL = FuelingTable.TABLE.toDDL();
+        Log.v("Creating fueling table", fuelingDDL);
+        db.execSQL(fuelingDDL);
     }
 
     @Override
@@ -33,4 +43,5 @@ class DbHelper extends SQLiteOpenHelper {
         }
         onCreate(db);
     }
+
 }

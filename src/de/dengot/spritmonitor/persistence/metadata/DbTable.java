@@ -75,27 +75,32 @@ public class DbTable {
         primaryKey = keyColumns;
     }
 
+    public DbColumn[] getPrimaryKey(){
+        return primaryKey;
+    }
+
     public String toDDL() {
-        StringBuilder columnDdl = new StringBuilder();
+        StringBuilder columnDDL = new StringBuilder();
         for (int i = 0; i < columns.length; i++) {
-            columnDdl.append(columns[i].toDDL());
+            columnDDL.append(columns[i].toDDL());
             if (i < columns.length - 1) {
-                columnDdl.append(",");
+                columnDDL.append(" , ");
             }
         }
 
-        StringBuilder pkDdl = new StringBuilder();
+        StringBuilder pkDDL = new StringBuilder();
          if (primaryKey != null && primaryKey.length > 0) {
-            pkDdl.append(",");
+            pkDDL.append(" , primary key (");
             for (int i = 0; i < primaryKey.length; i++) {
-                pkDdl.append(primaryKey[i].getName());
+                pkDDL.append(primaryKey[i].getName());
                 if (i < primaryKey.length - 1) {
-                    pkDdl.append(",");
+                    pkDDL.append(",");
                 }
             }
+             pkDDL.append(")");
         }
         
-        String ddl = MessageFormat.format("create table {0} ( {1} {2} )", getName(), columnDdl, pkDdl);
+        String ddl = MessageFormat.format("create table {0} ( {1} {2} )", getName(), columnDDL, pkDDL);
 
         return ddl;
     }

@@ -9,4 +9,6 @@ public class SpritmonitorApplication extends Application {
     public void onCreate() {
         super.onCreate();
     }
+
+    //TODO close database on app shutdown
 }
