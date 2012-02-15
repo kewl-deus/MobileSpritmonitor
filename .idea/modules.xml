@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Spritmonitor.iml" filepath="$PROJECT_DIR$/Spritmonitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MobileSpritmonitor.iml" filepath="$PROJECT_DIR$/MobileSpritmonitor.iml" />
     </modules>
   </component>
 </project>
