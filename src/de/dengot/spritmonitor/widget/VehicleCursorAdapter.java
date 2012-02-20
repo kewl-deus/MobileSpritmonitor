@@ -16,18 +16,22 @@ import java.text.MessageFormat;
 
 public class VehicleCursorAdapter extends CursorAdapter {
 
-    private final int NAME_COLUMN;
+    private ColumnIndexHolder columnIndex = null;
 
     private int layout;
 
     public VehicleCursorAdapter(Context context, int layout, Cursor c) {
         super(context, c);
         this.layout = layout;
-        NAME_COLUMN = c.getColumnIndexOrThrow(VehicleTable.NAME);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
+
+        if (columnIndex == null){
+            columnIndex = new ColumnIndexHolder(cursor);
+        }
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layout, parent, false);
 
@@ -49,7 +53,8 @@ public class VehicleCursorAdapter extends CursorAdapter {
 
 
     private void fillRow(VehicleRow row, Cursor cursor){
-        Vehicle vehicle = new VehicleBean(cursor.getString(NAME_COLUMN));
+        Vehicle vehicle = new VehicleBean(cursor.getString(columnIndex.NAME));
+
 
         row.name.setText(vehicle.getName());
 
@@ -60,9 +65,17 @@ public class VehicleCursorAdapter extends CursorAdapter {
     /**
      * ViewHolder
      */
-    public static class VehicleRow {
+    class VehicleRow {
         TextView name;
         TextView summary;
+    }
+    
+    class ColumnIndexHolder {
+        final int NAME;
+        
+        public ColumnIndexHolder(Cursor cursor){
+            NAME = cursor.getColumnIndexOrThrow(VehicleTable.NAME);
+        }
     }
 }
 

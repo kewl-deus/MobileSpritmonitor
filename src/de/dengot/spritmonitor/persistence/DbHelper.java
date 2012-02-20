@@ -21,10 +21,17 @@ class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        createTables(db);
+    }
 
-        //debug
-        onUpgrade(db, 0, DB_VERSION);
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        dropTables(db);
+        createTables(db);
+    }
 
+
+    private void createTables(SQLiteDatabase db){
         final String vehicleDDL = VehicleTable.TABLE.toDDL();
         Log.v("Creating vehicle table", vehicleDDL);
         db.execSQL(vehicleDDL);
@@ -34,14 +41,13 @@ class DbHelper extends SQLiteOpenHelper {
         db.execSQL(fuelingDDL);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+
+    private void dropTables(SQLiteDatabase db){
         final String[] tabs = {VehicleTable.TABLE.getName(), FuelingTable.TABLE.getName()};
         for (String tab : tabs) {
             String dropStmt = "drop table if exists " + tab;
             db.execSQL(dropStmt);
         }
-        onCreate(db);
     }
-
 }

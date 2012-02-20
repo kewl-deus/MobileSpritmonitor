@@ -35,6 +35,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
         // We have a menu item to show in action bar.
         setHasOptionsMenu(true);
 
+
         // Create an empty adapter we will use to display the loaded data.
         final Cursor noCursor = null;
         cursorAdapter = new VehicleCursorAdapter(getActivity(), R.layout.vehiclelist_item, noCursor);
@@ -51,17 +52,6 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
 
 
         //setContentView(R.layout.vehiclelist);
-
-        /*
-        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-        vehicleList.add(new VehicleBean("R32"));
-        vehicleList.add(new VehicleBean("GTI"));
-        vehicleList.add(new VehicleBean("Street Triple"));
-
-        VehicleListAdapter vehiclesAdapter = new VehicleListAdapter(this, R.layout.vehiclelist_item, vehicleList);
-        setListAdapter(vehiclesAdapter);
-        */
-
     }
 
     @Override
