@@ -10,10 +10,10 @@ public class FuelingAssociationDbProxy implements FuelingAssociation {
     private List<Fueling> cache;
 
     public List<Fueling> getFuelings() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     public void addFueling(Fueling fueling) {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 }

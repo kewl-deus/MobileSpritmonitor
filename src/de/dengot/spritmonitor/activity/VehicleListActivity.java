@@ -26,12 +26,14 @@ import java.util.List;
 
 public class VehicleListActivity extends FragmentActivity {
 
+    private static final String TAG = "VehicleListActivity";
 
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
         //delegate to fragment

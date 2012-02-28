@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.*;
 import android.widget.ListView;
 import de.dengot.spritmonitor.R;
@@ -22,10 +23,27 @@ import java.util.List;
 
 public class VehicleListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String TAG = "VehicleListFragment";
+
+    private static final int LOADER_ID = "VehicleListFragment.VehicleCursorLoader".hashCode();
+
     private VehicleCursorAdapter cursorAdapter;
-    
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
+        super.onCreate(savedInstanceState);
+
+        // Prepare the loader.  Either re-connect with an existing one,
+        // or start a new one.
+        final Bundle noLoaderArgs = null;
+        getLoaderManager().initLoader(LOADER_ID, noLoaderArgs, this);
+
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        Log.v(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
 
         // Give some text to display if there is no data.  In a real
@@ -40,27 +58,22 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
         final Cursor noCursor = null;
         cursorAdapter = new VehicleCursorAdapter(getActivity(), R.layout.vehiclelist_item, noCursor);
         setListAdapter(cursorAdapter);
-        
 
         // Start out with a progress indicator.
         setListShown(false);
-
-        // Prepare the loader.  Either re-connect with an existing one,
-        // or start a new one.
-        final Bundle noLoaderArgs = null;
-        getLoaderManager().initLoader(0, noLoaderArgs, this);
-
 
         //setContentView(R.layout.vehiclelist);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.v(TAG, "onCreateLoader: " + id);
         return new VehicleCursorLoader(getActivity());
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor data) {
+        Log.v(TAG, "onLoadFinished");
         this.cursorAdapter.swapCursor(data);
         // The list should now be shown.
         if (isResumed()) {
@@ -72,6 +85,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        Log.v(TAG, "onLoaderReset");
         // This is called when the last Cursor provided to onLoadFinished()
         // above is about to be closed.  We need to make sure we are no
         // longer using it.
@@ -81,6 +95,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        Log.v(TAG, "onListItemClick");
         super.onListItemClick(l, v, position, id);
         Object item = l.getItemAtPosition(position);
         if (item instanceof VehicleBean) {
@@ -91,13 +106,14 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        Log.v(TAG, "onCreateOptionsMenu");
         menuInflater.inflate(R.menu.vehiclelist_optionsmenu, menu);
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Log.v(TAG, "onOptionsItemSelected");
         switch (item.getItemId()) {
             case R.id.new_vehicle:
                 Intent newVehicleIntent = new Intent(getActivity(), EditVehicleActivity.class);
@@ -109,6 +125,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        Log.v(TAG, "onCreateContextMenu");
         MenuInflater menuInflater = getActivity().getMenuInflater();
         menuInflater.inflate(R.menu.vehiclelist_contextmenu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -116,6 +133,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        Log.v(TAG, "onContextItemSelected");
         switch(item.getItemId()){
             case R.id.edit_vehicle:
                 Intent editVehicleIntent = new Intent(getActivity(), EditVehicleActivity.class);

@@ -17,27 +17,27 @@ public class PersistentVehicle extends VehicleBean implements Vehicle {
     }
 
     public int getOdometer() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  
     }
 
     public int getTotalDistance() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  
     }
 
     public float getTotalQuantity() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  
     }
 
     public float getTotalCosts() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  
     }
 
     public float getAverageConsumption() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  
     }
 
     public float getAverageUnitPrice() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  
     }
 
 
