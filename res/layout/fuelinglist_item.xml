@@ -11,12 +11,19 @@
                 android:layout_column="1"
                 android:padding="3dip"/>
         <TextView
-                android:id="@+id/text_fuelitem_odometer"
+                android:id="@+id/text_fuelitem_consumption"
                 android:gravity="left"
                 android:padding="3dip"/>
         <TextView
-                android:id="@+id/text_fuelitem_distance"
+                android:id="@+id/text_fuelitem_unitprice"
                 android:gravity="left"
+                android:padding="3dip"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+                android:id="@+id/text_fuelitem_distance"
+                android:layout_column="1"
                 android:padding="3dip"/>
         <TextView
                 android:id="@+id/text_fuelitem_quantity"
@@ -26,14 +33,11 @@
                 android:id="@+id/text_fuelitem_cost"
                 android:gravity="left"
                 android:padding="3dip"/>
-        <TextView
-                android:id="@+id/text_fuelitem_consumption"
-                android:gravity="left"
-                android:padding="3dip"/>
-        <TextView
-                android:id="@+id/text_fuelitem_unitprice"
-                android:gravity="left"
-                android:padding="3dip"/>
     </TableRow>
+
+    <!--TextView
+            android:id="@+id/text_fuelitem_odometer"
+            android:gravity="left"
+            android:padding="3dip"/ -->
 
 </TableLayout>

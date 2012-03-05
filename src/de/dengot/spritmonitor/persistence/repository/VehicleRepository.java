@@ -1,13 +1,12 @@
-package de.dengot.spritmonitor.persistence;
+package de.dengot.spritmonitor.persistence.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import de.dengot.spritmonitor.model.Identifyable;
 import de.dengot.spritmonitor.model.Vehicle;
 import de.dengot.spritmonitor.model.VehicleBean;
-import de.dengot.spritmonitor.persistence.metadata.DbTable;
+import de.dengot.spritmonitor.persistence.DbHelper;
 import de.dengot.spritmonitor.persistence.table.VehicleTable;
 
 public class VehicleRepository extends DbRepository<Vehicle> {
@@ -28,10 +27,10 @@ public class VehicleRepository extends DbRepository<Vehicle> {
 
 
     @Override
-    protected Vehicle mapRow(Cursor cursor) {
+    public Vehicle mapRow(Cursor cursor) {
         VehicleBean v = new VehicleBean();
-        v.setId(cursor.getLong(dbTable.indexOf(VehicleTable.ID)));
-        v.setName(cursor.getString(dbTable.indexOf(VehicleTable.NAME)));
+        v.setId(cursor.getLong(cursor.getColumnIndexOrThrow(VehicleTable.ID)));
+        v.setName(cursor.getString(cursor.getColumnIndexOrThrow(VehicleTable.NAME)));
 
         return v;
     }

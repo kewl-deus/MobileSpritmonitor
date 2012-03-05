@@ -1,9 +1,10 @@
-package de.dengot.spritmonitor.persistence;
+package de.dengot.spritmonitor.persistence.repository;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import de.dengot.spritmonitor.model.Identifyable;
+import de.dengot.spritmonitor.persistence.DbHelper;
 import de.dengot.spritmonitor.persistence.metadata.DbTable;
 
 public abstract class DbRepository<E extends Identifyable> {
@@ -52,7 +53,7 @@ public abstract class DbRepository<E extends Identifyable> {
         db.close();
     }
 
-    protected abstract E mapRow(Cursor cursor);
+    public abstract E mapRow(Cursor cursor);
 
     protected abstract void insertEntity(SQLiteDatabase db, E entity);
 

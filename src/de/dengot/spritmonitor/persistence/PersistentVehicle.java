@@ -1,12 +1,8 @@
 package de.dengot.spritmonitor.persistence;
 
-import android.database.Cursor;
-import de.dengot.spritmonitor.model.Fueling;
 import de.dengot.spritmonitor.model.Vehicle;
 import de.dengot.spritmonitor.model.VehicleBean;
-import de.dengot.spritmonitor.persistence.table.VehicleTable;
-
-import java.util.List;
+import de.dengot.spritmonitor.persistence.repository.FuelingRepository;
 
 public class PersistentVehicle extends VehicleBean implements Vehicle {
 

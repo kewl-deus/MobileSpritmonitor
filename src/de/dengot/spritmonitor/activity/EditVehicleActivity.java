@@ -10,7 +10,7 @@ import android.widget.Toast;
 import de.dengot.spritmonitor.R;
 import de.dengot.spritmonitor.model.Vehicle;
 import de.dengot.spritmonitor.model.VehicleBean;
-import de.dengot.spritmonitor.persistence.VehicleRepository;
+import de.dengot.spritmonitor.persistence.repository.VehicleRepository;
 
 
 public class EditVehicleActivity extends Activity {

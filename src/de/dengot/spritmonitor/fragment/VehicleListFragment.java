@@ -13,19 +13,15 @@ import de.dengot.spritmonitor.R;
 import de.dengot.spritmonitor.activity.EditVehicleActivity;
 import de.dengot.spritmonitor.activity.FuelingListActivity;
 import de.dengot.spritmonitor.model.Vehicle;
-import de.dengot.spritmonitor.model.VehicleBean;
-import de.dengot.spritmonitor.persistence.VehicleRepository;
 import de.dengot.spritmonitor.persistence.loader.VehicleCursorLoader;
 import de.dengot.spritmonitor.widget.VehicleCursorAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class VehicleListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String TAG = "VehicleListFragment";
+    private static final String TAG = VehicleListFragment.class.getSimpleName();
 
-    private static final int LOADER_ID = "VehicleListFragment.VehicleCursorLoader".hashCode();
+    private static final int LOADER_ID = (TAG + "." + VehicleCursorLoader.TAG).hashCode();
 
     private VehicleCursorAdapter cursorAdapter;
 
@@ -65,43 +61,14 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
         //setContentView(R.layout.vehiclelist);
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Log.v(TAG, "onCreateLoader: " + id);
-        return new VehicleCursorLoader(getActivity());
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor data) {
-        Log.v(TAG, "onLoadFinished");
-        this.cursorAdapter.swapCursor(data);
-        // The list should now be shown.
-        if (isResumed()) {
-            setListShown(true);
-        } else {
-            setListShownNoAnimation(true);
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-        Log.v(TAG, "onLoaderReset");
-        // This is called when the last Cursor provided to onLoadFinished()
-        // above is about to be closed.  We need to make sure we are no
-        // longer using it.
-        this.cursorAdapter.swapCursor(null);
-    }
-
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.v(TAG, "onListItemClick");
         super.onListItemClick(l, v, position, id);
-        Object item = l.getItemAtPosition(position);
-        if (item instanceof VehicleBean) {
-            Vehicle vehicle = (Vehicle) l.getItemAtPosition(position);
-            Intent detailIntent = new Intent(getActivity(), FuelingListActivity.class);
-        }
+        Intent intent = new Intent(getActivity(), FuelingListActivity.class);
+        intent.putExtra(FuelingListActivity.PARAM_VECHILE_ID, id);
+        startActivity(intent);
     }
 
     @Override
@@ -134,7 +101,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         Log.v(TAG, "onContextItemSelected");
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.edit_vehicle:
                 Intent editVehicleIntent = new Intent(getActivity(), EditVehicleActivity.class);
                 Vehicle vehicle = (Vehicle) getListView().getSelectedItem();
@@ -142,6 +109,35 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    //------------------------ LoaderCallbacks -----------------------------------------------
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.v(TAG, "onCreateLoader: " + id);
+        return new VehicleCursorLoader(getActivity());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor data) {
+        Log.v(TAG, "onLoadFinished");
+        this.cursorAdapter.swapCursor(data);
+        // The list should now be shown.
+        if (isResumed()) {
+            setListShown(true);
+        } else {
+            setListShownNoAnimation(true);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        Log.v(TAG, "onLoaderReset");
+        // This is called when the last Cursor provided to onLoadFinished()
+        // above is about to be closed.  We need to make sure we are no
+        // longer using it.
+        this.cursorAdapter.swapCursor(null);
     }
 
 }

@@ -20,8 +20,9 @@ public class VehicleCursorAdapter extends CursorAdapter {
 
     private int layout;
 
-    public VehicleCursorAdapter(Context context, int layout, Cursor c) {
-        super(context, c);
+
+    public VehicleCursorAdapter(Context context, int layout, Cursor cursor) {
+        super(context, cursor, false);
         this.layout = layout;
     }
 
@@ -54,10 +55,7 @@ public class VehicleCursorAdapter extends CursorAdapter {
 
     private void fillRow(VehicleRow row, Cursor cursor){
         Vehicle vehicle = new VehicleBean(cursor.getString(columnIndex.NAME));
-
-
         row.name.setText(vehicle.getName());
-
         String summaryMsg = MessageFormat.format("Ø {0} l/100km, Tachostand: {1} km", vehicle.getAverageConsumption(), vehicle.getOdometer());
         row.summary.setText(summaryMsg);
     }
@@ -65,12 +63,12 @@ public class VehicleCursorAdapter extends CursorAdapter {
     /**
      * ViewHolder
      */
-    class VehicleRow {
+    private class VehicleRow {
         TextView name;
         TextView summary;
     }
     
-    class ColumnIndexHolder {
+    private class ColumnIndexHolder {
         final int NAME;
         
         public ColumnIndexHolder(Cursor cursor){
