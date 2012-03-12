@@ -24,6 +24,7 @@ public class FuelingRowMapper implements RowMapper<Fueling> {
         f.setFilldate(new Date(cursor.getLong(columnIndex.FILLDATE)));
         f.setOdometer(cursor.getInt(columnIndex.ODOMETER));
         f.setQuantity(cursor.getFloat(columnIndex.QUANTITY));
+        f.setFillup(cursor.getInt(columnIndex.FILLUP) != 0);
         return f;
     }
 
@@ -38,6 +39,7 @@ public class FuelingRowMapper implements RowMapper<Fueling> {
         final int QUANTITY;
         final int COST;
         final int ODOMETER;
+        final int FILLUP;
 
         public ColumnIndexHolder(Cursor cursor){
             cursorHash = cursor.hashCode();
@@ -48,6 +50,7 @@ public class FuelingRowMapper implements RowMapper<Fueling> {
             QUANTITY = cursor.getColumnIndexOrThrow(FuelingTable.QUANTITY);
             COST = cursor.getColumnIndexOrThrow(FuelingTable.COST);
             ODOMETER = cursor.getColumnIndexOrThrow(FuelingTable.ODOMETER);
+            FILLUP = cursor.getColumnIndexOrThrow(FuelingTable.FILLUP);
         }
         
         boolean matches(Cursor cursor){

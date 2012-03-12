@@ -16,6 +16,7 @@ public final class FuelingTable {
     public static final String DISTANCE = "distance";
     public static final String QUANTITY = "quantity";
     public static final String COST = "cost";
+    public static final String FILLUP = "fillup";
 
     public static DbTable TABLE = table("fueling",
             primaryKey(column(ID, "integer")),
@@ -24,7 +25,8 @@ public final class FuelingTable {
             column(ODOMETER, "integer"),
             column(DISTANCE, "integer"),
             column(QUANTITY, "real"),
-            column(COST, "real")
+            column(COST, "real"),
+            column(FILLUP, "integer")
     );
 
     private FuelingTable() {

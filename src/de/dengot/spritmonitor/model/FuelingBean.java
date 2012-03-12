@@ -10,6 +10,7 @@ public class FuelingBean  extends IdentifyableBean implements Serializable, Fuel
     private int distance;
     private float quantity;
     private float cost;
+    private boolean fillup;
 
     public float getCost() {
         return cost;
@@ -49,6 +50,14 @@ public class FuelingBean  extends IdentifyableBean implements Serializable, Fuel
 
     public void setQuantity(float quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isFillup() {
+        return fillup;
+    }
+
+    public void setFillup(boolean fillup) {
+        this.fillup = fillup;
     }
 
     /**

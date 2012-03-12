@@ -84,10 +84,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
         for (int i = 1; i <= 20; i++) {
             for (int v = 1; v <= 3; v++) {
-//                String sql = MessageFormat.format("insert into fueling (_id, vehicle_id, filldate, odometer, distance, quantity, cost) values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
-//                        i + v * 100, v, System.currentTimeMillis() - i * 86400 * 1000, i * 500, 500 + i, 40.42 + i, 50.67 + i);
-                db.execSQL("insert into fueling (_id, vehicle_id, filldate, odometer, distance, quantity, cost) values (?, ?, ?, ?, ?, ?, ?)",
-                        new Object[]{i + v * 100, v, System.currentTimeMillis() - i * 86400 * 1000, i * 500, 500 + i, 40.42 + i, 50.67 + i});
+                db.execSQL("insert into fueling (_id, vehicle_id, filldate, odometer, distance, quantity, cost, fillup) values (?, ?, ?, ?, ?, ?, ?, ?)",
+                        new Object[]{i + v * 100, v, System.currentTimeMillis() - i * 86400 * 1000, i * 500, 500 + i, 40.42 + i, 50.67 + i, 1});
             }
         }
 

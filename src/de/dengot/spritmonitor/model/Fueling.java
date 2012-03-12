@@ -27,4 +27,8 @@ public interface Fueling extends  Identifyable, Comparable<Fueling>{
     float getConsumption();
 
     float getUnitPrice();
+
+    void setFillup(boolean fillup);
+
+    boolean isFillup();
 }
