@@ -20,7 +20,8 @@ public final class VehicleTable {
 
     public static final DbTable TABLE = table("vehicle",
             primaryKey(column(ID, "integer")),
-            column(NAME, "text")
+            column(NAME, "text"),
+            column(EXTERNAL_ID, "text")
     );
 
     private VehicleTable(){}

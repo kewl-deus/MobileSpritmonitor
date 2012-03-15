@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface Vehicle extends Identifyable {
 
-    void addFueling(Fueling fueling);
-
-    List<Fueling> getFuelings();
-
     String getName();
 
     void setName(String name);
 
+    String getExternalId();
+
+    void setExternalId(String externalId);
+    
     int getOdometer();
 
     int getTotalDistance();

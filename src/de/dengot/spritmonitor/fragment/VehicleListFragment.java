@@ -10,7 +10,8 @@ import android.util.Log;
 import android.view.*;
 import android.widget.ListView;
 import de.dengot.spritmonitor.R;
-import de.dengot.spritmonitor.activity.EditVehicleActivity;
+import de.dengot.spritmonitor.activity.VehicleDetailActivity;
+import de.dengot.spritmonitor.activity.VehicleFormActivity;
 import de.dengot.spritmonitor.activity.FuelingListActivity;
 import de.dengot.spritmonitor.model.Vehicle;
 import de.dengot.spritmonitor.persistence.loader.VehicleCursorLoader;
@@ -66,8 +67,8 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.v(TAG, "onListItemClick");
         super.onListItemClick(l, v, position, id);
-        Intent intent = new Intent(getActivity(), FuelingListActivity.class);
-        intent.putExtra(FuelingListActivity.PARAM_VECHILE_ID, id);
+        Intent intent = new Intent(getActivity(), VehicleDetailActivity.class);
+        intent.putExtra(VehicleDetailActivity.PARAM_VEHICLE_ID, id);
         startActivity(intent);
     }
 
@@ -83,7 +84,7 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
         Log.v(TAG, "onOptionsItemSelected");
         switch (item.getItemId()) {
             case R.id.new_vehicle:
-                Intent newVehicleIntent = new Intent(getActivity(), EditVehicleActivity.class);
+                Intent newVehicleIntent = new Intent(getActivity(), VehicleFormActivity.class);
                 break;
         }
 
@@ -103,9 +104,9 @@ public class VehicleListFragment extends ListFragment implements LoaderManager.L
         Log.v(TAG, "onContextItemSelected");
         switch (item.getItemId()) {
             case R.id.edit_vehicle:
-                Intent editVehicleIntent = new Intent(getActivity(), EditVehicleActivity.class);
+                Intent editVehicleIntent = new Intent(getActivity(), VehicleFormActivity.class);
                 Vehicle vehicle = (Vehicle) getListView().getSelectedItem();
-                editVehicleIntent.putExtra(EditVehicleActivity.VEHICLE_ID, vehicle.getId());
+                editVehicleIntent.putExtra(VehicleFormActivity.PARAM_VEHICLE_ID, vehicle.getId());
                 break;
         }
         return super.onContextItemSelected(item);

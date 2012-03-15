@@ -17,13 +17,27 @@
             />
 
 
+    <TextView android:id="@+id/label_vehicle_extid"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Externe ID"
+              android:layout_below="@id/input_vehicle_name"
+            />
+
+    <EditText android:id="@+id/input_vehicle_extid"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/label_vehicle_extid"
+            />
+
+
     <Button android:id="@+id/button_save_vehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Speichern"
-            android:layout_below="@id/input_vehicle_name"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="10dip"
+            android:layout_below="@id/input_vehicle_extid"
             />
 
     <Button android:id="@+id/button_cancel_vehicle"

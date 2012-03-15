@@ -10,13 +10,14 @@ import android.widget.TextView;
 import de.dengot.spritmonitor.R;
 import de.dengot.spritmonitor.model.Vehicle;
 import de.dengot.spritmonitor.model.VehicleBean;
+import de.dengot.spritmonitor.persistence.mapper.VehicleRowMapper;
 import de.dengot.spritmonitor.persistence.table.VehicleTable;
 
 import java.text.MessageFormat;
 
 public class VehicleCursorAdapter extends CursorAdapter {
 
-    private ColumnIndexHolder columnIndex = null;
+    private VehicleRowMapper rowMapper;
 
     private int layout;
 
@@ -24,19 +25,15 @@ public class VehicleCursorAdapter extends CursorAdapter {
     public VehicleCursorAdapter(Context context, int layout, Cursor cursor) {
         super(context, cursor, false);
         this.layout = layout;
+        this.rowMapper = new VehicleRowMapper();
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-
-        if (columnIndex == null){
-            columnIndex = new ColumnIndexHolder(cursor);
-        }
-
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layout, parent, false);
 
-        VehicleRow row = new VehicleRow();
+        ViewHolder row = new ViewHolder();
         row.name = (TextView) view.findViewById(R.id.text_vehicle_name);
         row.summary = (TextView) view.findViewById(R.id.text_vehicle_summary);
 
@@ -48,32 +45,22 @@ public class VehicleCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        VehicleRow rowData = (VehicleRow) view.getTag();
+        ViewHolder rowData = (ViewHolder) view.getTag();
         fillRow(rowData, cursor);
     }
 
 
-    private void fillRow(VehicleRow row, Cursor cursor){
-        Vehicle vehicle = new VehicleBean(cursor.getString(columnIndex.NAME));
-        row.name.setText(vehicle.getName());
+    private void fillRow(ViewHolder viewHolder, Cursor cursor){
+        Vehicle vehicle = rowMapper.mapRow(cursor);
+        viewHolder.name.setText(vehicle.getName());
         String summaryMsg = MessageFormat.format("Ø {0} l/100km, Tachostand: {1} km", vehicle.getAverageConsumption(), vehicle.getOdometer());
-        row.summary.setText(summaryMsg);
+        viewHolder.summary.setText(summaryMsg);
     }
 
-    /**
-     * ViewHolder
-     */
-    private class VehicleRow {
+    private class ViewHolder {
         TextView name;
         TextView summary;
     }
-    
-    private class ColumnIndexHolder {
-        final int NAME;
-        
-        public ColumnIndexHolder(Cursor cursor){
-            NAME = cursor.getColumnIndexOrThrow(VehicleTable.NAME);
-        }
-    }
+
 }
 

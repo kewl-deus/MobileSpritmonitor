@@ -31,4 +31,9 @@ public interface Fueling extends  Identifyable, Comparable<Fueling>{
     void setFillup(boolean fillup);
 
     boolean isFillup();
+
+    long getVehicleId();
+
+    void setVehicleId(long vehicleId);
+
 }

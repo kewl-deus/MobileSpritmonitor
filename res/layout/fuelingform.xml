@@ -1,7 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-</LinearLayout>
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+        <TextView android:id="@+id/label_fueling_filldate"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Datum"
+                />
+
+        <DatePicker android:id="@+id/input_fueling_filldate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_fueling_filldate"
+                />
+
+
+        <TextView android:id="@+id/label_fueling_odometer"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Tachostand"
+                  android:layout_below="@id/input_fueling_filldate"
+                />
+
+
+        <EditText android:id="@+id/input_fueling_odometer"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/label_fueling_odometer"
+                  android:inputType="number"
+                  android:maxLength="6"
+                />
+
+        <TextView android:id="@+id/label_fueling_distance"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Distanz"
+                  android:layout_below="@id/input_fueling_odometer"
+                />
+
+
+        <EditText android:id="@+id/input_fueling_distance"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/label_fueling_distance"
+                  android:inputType="number"
+                  android:maxLength="4"
+                />
+
+        <TextView android:id="@+id/label_fueling_quantity"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Menge"
+                  android:layout_below="@id/input_fueling_distance"
+                />
+
+
+        <EditText android:id="@+id/input_fueling_quantity"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/label_fueling_quantity"
+                  android:inputType="numberDecimal"
+                />
+
+        <TextView android:id="@+id/label_fueling_cost"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Kosten"
+                  android:layout_below="@id/input_fueling_quantity"
+                  android:inputType="numberDecimal"
+                />
+
+        <EditText android:id="@+id/input_fueling_cost"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/label_fueling_cost"
+                />
+
+        <CheckBox android:id="@+id/input_fueling_fillup"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Vollgetankt"
+                  android:layout_below="@id/input_fueling_cost"
+                />
+
+        <Button android:id="@+id/button_save_fueling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speichern"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dip"
+                android:layout_below="@id/input_fueling_fillup"
+                />
+
+        <Button android:id="@+id/button_cancel_vehicle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Abbrechen"
+                android:layout_toRightOf="@id/button_save_fueling"
+                android:layout_alignTop="@id/button_save_fueling"
+                />
+
+    </RelativeLayout>
+</ScrollView>

@@ -8,28 +8,28 @@ import java.util.List;
 public class VehicleBean extends IdentifyableBean implements Serializable, Vehicle {
 
     private String name;
+    private String externalId;
+    private int odometer;
+    private int totalDistance;
+    private float totalQuantity;
+    private float totalCosts;
+    private float averageConsumption;
+    private float averageUnitPrice;
 
-    private List<Fueling> fuelings;
-
-    public VehicleBean() {
-        this.fuelings = new LinkedList<Fueling>();
+    public float getAverageConsumption() {
+        return averageConsumption;
     }
 
-    public VehicleBean(String name) {
-        this();
-        this.name = name;
+    public void setAverageConsumption(float averageConsumption) {
+        this.averageConsumption = averageConsumption;
     }
 
-    public void addFueling(Fueling fueling) {
-        this.fuelings.add(fueling);
+    public float getAverageUnitPrice() {
+        return averageUnitPrice;
     }
 
-    public List<Fueling> getFuelings() {
-        return fuelings;
-    }
-
-    public void setFuelings(List<Fueling> fuelings){
-        this.fuelings = fuelings;
+    public void setAverageUnitPrice(float averageUnitPrice) {
+        this.averageUnitPrice = averageUnitPrice;
     }
 
     public String getName() {
@@ -41,54 +41,43 @@ public class VehicleBean extends IdentifyableBean implements Serializable, Vehic
     }
 
     public int getOdometer() {
-        if (fuelings.isEmpty()) return 0;
-        Collections.sort(fuelings);
-        return fuelings.iterator().next().getOdometer();
+        return odometer;
     }
 
-    public int getTotalDistance() {
-        if (fuelings.isEmpty()) return 0;
-        int sum = 0;
-        for (Fueling fueling : fuelings) {
-            sum += fueling.getDistance();
-        }
-        return sum;
-    }
-
-    public float getTotalQuantity() {
-        if (fuelings.isEmpty()) return 0;
-        float sum = 0;
-        for (Fueling fueling : fuelings) {
-            sum += fueling.getQuantity();
-        }
-        return sum;
+    public void setOdometer(int odometer) {
+        this.odometer = odometer;
     }
 
     public float getTotalCosts() {
-        if (fuelings.isEmpty()) return 0;
-        float sum = 0;
-        for (Fueling fueling : fuelings) {
-            sum += fueling.getCost();
-        }
-        return sum;
+        return totalCosts;
     }
 
-    public float getAverageConsumption() {
-        if (fuelings.isEmpty()) return 0;
-        float sum = 0;
-        for (Fueling fueling : fuelings) {
-            sum += fueling.getConsumption();
-        }
-        return sum / fuelings.size();
+    public void setTotalCosts(float totalCosts) {
+        this.totalCosts = totalCosts;
     }
 
-    public float getAverageUnitPrice() {
-        if (fuelings.isEmpty()) return 0;
-        float sum = 0;
-        for (Fueling fueling : fuelings) {
-            sum += fueling.getUnitPrice();
-        }
-        return sum / fuelings.size();
+    public int getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(int totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    public float getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(float totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public String getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
 
     @Override

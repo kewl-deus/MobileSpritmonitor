@@ -1,6 +1,7 @@
 package de.dengot.spritmonitor.persistence.mapper;
 
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import de.dengot.spritmonitor.model.Fueling;
 import de.dengot.spritmonitor.model.FuelingBean;
@@ -26,6 +27,19 @@ public class FuelingRowMapper implements RowMapper<Fueling> {
         f.setQuantity(cursor.getFloat(columnIndex.QUANTITY));
         f.setFillup(cursor.getInt(columnIndex.FILLUP) != 0);
         return f;
+    }
+
+    @Override
+    public ContentValues extractValues(Fueling f) {
+        ContentValues cv = new ContentValues();
+        cv.put(FuelingTable.VEHICLE_ID, f.getVehicleId());
+        cv.put(FuelingTable.FILLUP, f.isFillup() ? 1 : 0);
+        cv.put(FuelingTable.COST, f.getCost());
+        cv.put(FuelingTable.DISTANCE, f.getDistance());
+        cv.put(FuelingTable.FILLDATE, f.getFilldate().getTime());
+        cv.put(FuelingTable.ODOMETER, f.getOdometer());
+        cv.put(FuelingTable.QUANTITY, f.getQuantity());
+        return cv;
     }
 
 

@@ -12,7 +12,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.FuelingListActivity" android:label="Betankungen"/>
-        <activity android:name=".activity.EditVehicleActivity" android:label="Fahrzeug bearbeiten"/>
-        <activity android:name=".activity.EditFuelingActivity" android:label="Betankung bearbeiten"/>
+        <activity android:name=".activity.VehicleFormActivity" android:label="Fahrzeug bearbeiten"/>
+        <activity android:name=".activity.FuelingFormActivity" android:label="Betankung bearbeiten"/>
+        <activity android:name=".activity.VehicleDetailActivity" android:label="Fahrzeugdetails"/>
     </application>
 </manifest> 

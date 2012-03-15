@@ -4,7 +4,8 @@ import java.util.Date;
 import java.io.Serializable;
 
 public class FuelingBean  extends IdentifyableBean implements Serializable, Fueling {
-    
+
+    private long vehicleId;
     private Date filldate;
     private int odometer;
     private int distance;
@@ -58,6 +59,14 @@ public class FuelingBean  extends IdentifyableBean implements Serializable, Fuel
 
     public void setFillup(boolean fillup) {
         this.fillup = fillup;
+    }
+
+    public long getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(long vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     /**
